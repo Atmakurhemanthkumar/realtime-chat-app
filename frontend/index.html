@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real-Time Chat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.2/dist/index.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <div class="navbar">
+      <div class="brand">
+        <i class="fas fa-comments"></i> RealTimeChat
+      </div>
+      <div class="user-info">
+        <span id="usernameDisplay"></span>
+        <button class="logout-btn" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="sidebar">
+        <div class="search-box">
+          <input type="text" placeholder="Search users..." id="searchUsers">
+          <i class="fas fa-search"></i>
+        </div>
+        <div class="users-list" id="usersList">
+          <!-- Users will be populated here -->
+        </div>
+      </div>
+
+      <div class="chat-container">
+        <div id="auth-box" class="auth-box">
+          <h2>Welcome to RealTimeChat</h2>
+          <div class="auth-tabs">
+            <button class="tab-btn active" id="loginTab">Login</button>
+            <button class="tab-btn" id="registerTab">Register</button>
+          </div>
+          
+          <div class="auth-form" id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button class="auth-btn" onclick="login()">Login</button>
+          </div>
+          
+          <div class="auth-form hidden" id="registerForm">
+            <input type="text" id="registerUsername" placeholder="Username" required>
+            <input type="email" id="registerEmail" placeholder="Email" required>
+            <input type="password" id="registerPassword" placeholder="Password" required>
+            <button class="auth-btn" onclick="register()">Register</button>
+          </div>
+        </div>
+
+        <div id="chat-box" class="hidden">
+          <div class="chat-header">
+            <h3 id="chatWithUser">Select a user to chat</h3>
+            <div class="user-status" id="userStatus"></div>
+          </div>
+          
+          <div class="messages-container" id="messages">
+            <!-- Messages will appear here -->
+          </div>
+          
+          <div class="message-input">
+            <div class="emoji-btn" id="emoji-btn">
+              <i class="far fa-smile"></i>
+            </div>
+            <input type="text" id="msgInput" placeholder="Type a message..." />
+            <button class="send-btn" onclick="sendMessage()" aria-label="Send message">
+  <i class="fas fa-paper-plane" aria-hidden="true"></i>
+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
